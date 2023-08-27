@@ -178,6 +178,15 @@ if __name__ == '__main__':
     root = customtkinter.CTk()
     root.title('Lythrum')
     root.iconbitmap(icon_theme)
+    
+    display_width = 600
+    display_height = 300
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    position_x = round((screen_width/2) - (display_width/2))
+    position_y = round((screen_height/2.5) - (display_height/2))
+    root.geometry(f'{display_width}x{display_height}+{position_x}+{position_y}')
+
     root.columnconfigure(0, weight=1)
     root.columnconfigure(1, weight=2)
     root.columnconfigure(2, weight=2)
@@ -186,7 +195,7 @@ if __name__ == '__main__':
     root.rowconfigure(1, weight=1)
     root.rowconfigure(2, weight=1)
     root.rowconfigure(3, weight=1)
-    
+
     lbl_input = customtkinter.CTkLabel(root, text='INPUT')
     lbl_input.grid(row=0, column=1, columnspan=2, padx=10, pady=10, sticky='nsew')
     
