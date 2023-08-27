@@ -70,7 +70,7 @@ def auto_select_gpu(ffmpeg, input_file, output_file, video_codec='libx264', audi
             audio_codec = 'flac'
         elif output_extension == '.m4a':
             audio_codec = 'aac -strict experimental'
-        ffmpeg_cmd = f'{ffmpeg} -i "{input_file}" -vn -acodec {audio_codec} "{output_file}"'
+        ffmpeg_cmd = f'"{ffmpeg}" -i "{input_file}" -vn -acodec {audio_codec} "{output_file}"'
         gpu=3
     else:
         if output_extension in {'.mp4', '.avi', '.mkv', '.webm', '.mpg'}:
@@ -92,11 +92,11 @@ def auto_select_gpu(ffmpeg, input_file, output_file, video_codec='libx264', audi
             elif gpu == 2:
                 video_codec_gpu = '_qsv'
                 
-            ffmpeg_cmd = f'{ffmpeg} -i "{input_file}" -vcodec {video_codec}{video_codec_gpu} -acodec {audio_codec} "{output_file}"'
+            ffmpeg_cmd = f'"{ffmpeg}" -i "{input_file}" -vcodec {video_codec}{video_codec_gpu} -acodec {audio_codec} "{output_file}"'
         else:
             if output_extension == '.mov':
                 audio_codec='aac'
-            ffmpeg_cmd = f'{ffmpeg} -i "{input_file}" -vcodec {video_codec} -acodec {audio_codec} "{output_file}"'
+            ffmpeg_cmd = f'"{ffmpeg}" -i "{input_file}" -vcodec {video_codec} -acodec {audio_codec} "{output_file}"'
             gpu=3
     if gpu > 2:
         try:
